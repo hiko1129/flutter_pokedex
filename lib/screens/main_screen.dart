@@ -28,11 +28,14 @@ class _MainScreenState extends State<MainScreen> {
       itemBuilder: (context, index) {
         final pokemon = pokedex[index];
 
+        final pokemonId = numberFormat.format(pokemon.id);
+
         return PokemonPictureCard(
+          id: pokemonId,
           name: pokemon.name.english,
           base: pokemon.base,
-          picturePath: 'pokemon/images/${numberFormat.format(pokemon.id)}.png',
-          iconPath: 'pokemon/sprites/${numberFormat.format(pokemon.id)}MS.png',
+          picturePath: 'pokemon/images/$pokemonId.png',
+          iconPath: 'pokemon/sprites/${pokemonId}MS.png',
         );
       },
       itemCount: pokedex.length,

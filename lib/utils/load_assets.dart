@@ -1,6 +1,7 @@
+import 'dart:convert';
+
 import 'package:pokedex/models/pokedex.dart';
 import 'package:meta/meta.dart';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class Assets {
