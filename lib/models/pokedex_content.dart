@@ -1,19 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'pokedex.g.dart';
+part 'pokedex_content.g.dart';
 
 @JsonSerializable()
-class Pokedex {
-  Pokedex({
+class PokedexContent {
+  PokedexContent({
     this.id,
     this.name,
     this.type,
     this.base,
   });
 
-  factory Pokedex.fromJson(Map<String, dynamic> json) =>
-      _$PokedexFromJson(json);
-  Map<String, dynamic> toJson() => _$PokedexToJson(this);
+  factory PokedexContent.fromJson(Map<String, dynamic> json) =>
+      _$PokedexContentFromJson(json);
+  Map<String, dynamic> toJson() => _$PokedexContentToJson(this);
 
   int id;
   Name name;

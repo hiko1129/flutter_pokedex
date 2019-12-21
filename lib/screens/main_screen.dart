@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/models/pokedex.dart';
+import 'package:pokedex/models/pokedex_content.dart';
 import 'package:pokedex/utils/load_assets.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
     _assets = Provider.of<Assets>(context);
   }
 
-  Widget _buildList(List<Pokedex> pokedex) {
+  Widget _buildList(List<PokedexContent> pokedex) {
     final numberFormat = NumberFormat('000');
 
     return ListView.builder(
@@ -58,6 +58,8 @@ class _MainScreenState extends State<MainScreen> {
       'Speed': base.speed,
     };
 
+    const pathPrefix = 'assets';
+
     return GestureDetector(
       onTap: () async => launch('https://www.pokemon.jp/zukan/detail/$id.html'),
       child: Card(
@@ -68,10 +70,10 @@ class _MainScreenState extends State<MainScreen> {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               ListTile(
-                leading: Image.asset('assets/$iconPath'),
+                leading: Image.asset('$pathPrefix/$iconPath'),
                 title: Text(name),
               ),
-              Image.asset('assets/$picturePath'),
+              Image.asset('$pathPrefix/$picturePath'),
               Wrap(
                 children: <Widget>[
                   ...chips.keys.map((chipLabel) {

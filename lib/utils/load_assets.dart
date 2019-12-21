@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:pokedex/models/pokedex.dart';
+import 'package:pokedex/models/pokedex_content.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 
 class Assets {
   Assets({@required this.pokedex}) : assert(pokedex != null);
 
-  final List<Pokedex> pokedex;
+  final List<PokedexContent> pokedex;
 }
 
 Future<dynamic> _loadJsonAsset({
@@ -24,7 +24,8 @@ Future<Assets> loadAssets(BuildContext context) async {
   ) as List)
       .cast<Map<String, dynamic>>();
 
-  final pokedex = pokedexJson.map((json) => Pokedex.fromJson(json)).toList();
+  final pokedex =
+      pokedexJson.map((json) => PokedexContent.fromJson(json)).toList();
 
   return Assets(pokedex: pokedex);
 }

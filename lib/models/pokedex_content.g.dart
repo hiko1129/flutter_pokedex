@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokedex.dart';
+part of 'pokedex_content.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Pokedex _$PokedexFromJson(Map<String, dynamic> json) {
-  return Pokedex(
+PokedexContent _$PokedexContentFromJson(Map<String, dynamic> json) {
+  return PokedexContent(
     id: json['id'] as int,
     name: json['name'] == null
         ? null
@@ -19,7 +19,8 @@ Pokedex _$PokedexFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PokedexToJson(Pokedex instance) => <String, dynamic>{
+Map<String, dynamic> _$PokedexContentToJson(PokedexContent instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'type': instance.type,
