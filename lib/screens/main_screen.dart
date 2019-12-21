@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokedex.dart';
 import 'package:pokedex/utils/load_assets.dart';
 import 'package:provider/provider.dart';
-import 'package:pokedex/widgets/pokemon_picture_card.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends StatefulWidget {
   static const path = '/';
@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
 
         final pokemonId = numberFormat.format(pokemon.id);
 
-        return PokemonPictureCard(
+        return _buildPokemonCard(
           id: pokemonId,
           name: pokemon.name.english,
           base: pokemon.base,
@@ -39,6 +39,55 @@ class _MainScreenState extends State<MainScreen> {
         );
       },
       itemCount: pokedex.length,
+    );
+  }
+
+  Widget _buildPokemonCard({
+    @required String id,
+    @required String name,
+    @required String picturePath,
+    @required String iconPath,
+    @required Base base,
+  }) {
+    final chips = <String, dynamic>{
+      'HP': base.hp,
+      'Attack': base.attack,
+      'Defense': base.defense,
+      'Sp. Attack': base.spAttack,
+      'Sp. Defense': base.spDefense,
+      'Speed': base.speed,
+    };
+
+    return GestureDetector(
+      onTap: () async => launch('https://www.pokemon.jp/zukan/detail/$id.html'),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(4),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              ListTile(
+                leading: Image.asset('assets/$iconPath'),
+                title: Text(name),
+              ),
+              Image.asset('assets/$picturePath'),
+              Wrap(
+                children: <Widget>[
+                  ...chips.keys.map((chipLabel) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 4),
+                      child: Chip(
+                        label: Text('$chipLabel: ${chips[chipLabel]}'),
+                      ),
+                    );
+                  })
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 
