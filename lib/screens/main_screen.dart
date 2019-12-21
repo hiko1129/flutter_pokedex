@@ -97,7 +97,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('図鑑'),
+        title: const Text('Pokedex'),
       ),
       body: _buildList(pokedex),
     );
